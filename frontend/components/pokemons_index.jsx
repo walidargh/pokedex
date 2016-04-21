@@ -1,6 +1,7 @@
 var React = require('react'),
     PokemonStore = require('../stores/pokemon_store.js'),
-    ClientActions = require('../actions/client_actions.js');
+    ClientActions = require('../actions/client_actions.js'),
+    PokemonIndexItem = require('./pokemon_index_item');
 
 var PokemonsIndex = React.createClass({
   getInitialState: function() {
@@ -8,7 +9,6 @@ var PokemonsIndex = React.createClass({
   },
 
   _onChange: function() {
-    debugger
     this.setState({pokemons: PokemonStore.all()});
   },
 
@@ -26,8 +26,13 @@ var PokemonsIndex = React.createClass({
   },
 
   render: function() {
+    var pokemons = this.state.pokemons.map(function (pokemon) {
+      return <PokemonIndexItem key={pokemon.id} pokemon={pokemon} />;
+    });
     return (
-      <div>{this.state.pokemons.length}</div>
+      <ul>
+        {pokemons}
+      </ul>
     );
   }
 });
