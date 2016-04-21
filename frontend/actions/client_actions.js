@@ -5,8 +5,11 @@ var ClientActions = {
 
   fetchAllPokemons: function() {
     PokemonApiUtil.fetchAllPokemons();
-  }
+  },
 
+  fetchSinglePokemon: function(id) {
+    PokemonApiUtil.fetchSinglePokemon(id);
+  }
 
 };
 

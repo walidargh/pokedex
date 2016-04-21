@@ -8,9 +8,11 @@ var _pokemons = {};
 PokemonStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
     case PokemonConstants.POKEMONS_RECEIVED:
-      PokemonStore.resetPokemon(payload.pokemons);
-    break;
-
+      PokemonStore.resetPokemons(payload.pokemons);
+      break;
+    case PokemonConstants.POKEMON_RECEIVED:
+      PokemonStore.resetPokemonDetail(payload.pokemon);
+      break;
   }
 };
 
@@ -21,8 +23,11 @@ PokemonStore.all = function() {
   });
   return results;
 };
-
-PokemonStore.resetPokemon = function(pokemons) {
+PokemonStore.resetPokemonDetail = function (pokemon) {
+  _pokemons[pokemon.id] = pokemon;
+  this.__emitChange();
+};
+PokemonStore.resetPokemons = function(pokemons) {
   _pokemons = {};
   pokemons.forEach( function(pokemon) {
     _pokemons[pokemon.id] = pokemon;
@@ -30,4 +35,7 @@ PokemonStore.resetPokemon = function(pokemons) {
   this.__emitChange();
 };
 
+PokemonStore.find = function (id) {
+  return _pokemons[id];
+};
 module.exports = PokemonStore;
