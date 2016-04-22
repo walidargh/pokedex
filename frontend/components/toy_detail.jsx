@@ -17,6 +17,10 @@ var ToyDetail = React.createClass({
     ClientActions.fetchSinglePokemon(pokeId);
   },
 
+  componentWillMount: function() {
+    this.listener = PokemonStore.addListener(this._onChange);
+  },
+
 
   render: function() {
     return (

@@ -1,6 +1,7 @@
 var React = require('react'),
     PokemonStore = require('../stores/pokemon_store.js'),
     ClientActions = require('../actions/client_actions.js'),
+    ToyIndexItem = require('./toy_index_item'),
     PokemonIndexItem = require('./pokemon_index_item');
 
 var ToysIndex = React.createClass({
@@ -8,13 +9,12 @@ var ToysIndex = React.createClass({
     return {toys: this.props.pokemon.toys};
   },
 
-  _onChange: function(toys) {
-    this.setState({toys: toys});
+  componentWillReceiveProps: function () {
+
   },
 
   componentDidMount: function() {
     this.listener = PokemonStore.addListener(this._onChange);
-    ClientActions.fetchAllToys(this.props.pokeId);
   },
 
   componentWillUnmount: function() {

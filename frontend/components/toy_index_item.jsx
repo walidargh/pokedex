@@ -18,3 +18,5 @@ var ToyIndexItem = React.createClass({
     </li>;
   }
 });
+
+module.exports = ToyIndexItem;

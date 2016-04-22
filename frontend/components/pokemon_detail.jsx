@@ -21,7 +21,9 @@ var PokemonDetail = React.createClass({
   },
 
   componentWillMount: function() {
+    var pokeId = this.props.params.pokemonId;
     this.listener = PokemonStore.addListener(this._onChange);
+    ClientActions.fetchSinglePokemon(pokeId);
   },
 
   componentWillUnmount: function () {
@@ -40,7 +42,8 @@ var PokemonDetail = React.createClass({
         <p>Name: {this.state.pokemon.name}</p>,
         <p>Attack: {this.state.pokemon.attack}</p>,
         <p>Defense: {this.state.pokemon.defense}</p>,
-        <p>Type: {this.state.pokemon.poke_type}</p>
+        <p>Type: {this.state.pokemon.poke_type}</p>,
+        <ToysIndex pokemon={this.state.pokemon}/>
       ];
     } else {
       details = <div></div>;
@@ -51,7 +54,6 @@ var PokemonDetail = React.createClass({
         <div className="pokeon-detail-pane">
           <div className="detail">
             {details}
-            <ToysIndex pokemon={this.state.pokemon}/>
           </div>
         </div>
         {this.props.children}
