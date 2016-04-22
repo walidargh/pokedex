@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var PokemonStore = require('../stores/pokemon_store');
 var PokemonsIndex = require('./pokemons_index');
 var ClientActions = require('../actions/client_actions');
+var ToysIndex = require('./toys_index');
 
 var PokemonDetail = React.createClass({
   getInitialState: function () {
@@ -16,7 +17,6 @@ var PokemonDetail = React.createClass({
 
   componentWillReceiveProps: function(newProps) {
     var pokeId = newProps.params.pokemonId;
-    // this.setState({pokemon: PokemonStore.find(pokeId)});
     ClientActions.fetchSinglePokemon(pokeId);
   },
 
@@ -45,13 +45,16 @@ var PokemonDetail = React.createClass({
     } else {
       details = <div></div>;
     }
+    debugger;
     return(
       <div>
         <div className="pokeon-detail-pane">
           <div className="detail">
             {details}
+            // <ToysIndex pokeId={this.state.pokemon.id}/>
           </div>
         </div>
+        {this.props.children}
       </div>
     );
   }

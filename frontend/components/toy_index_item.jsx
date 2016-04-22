@@ -3,10 +3,11 @@ var ReactDOM = require('react-dom');
 var PokemonStore = require('../stores/pokemon_store');
 var PokemonsIndex = require('./pokemons_index');
 var ClientActions = require('../actions/client_actions');
+var HashHistory = require('react-router').hashHistory;
 
 var ToyIndexItem = React.createClass({
   handleClick: function () {
-    HashHistory.push("pokemon/" + this.props.pokemon.id);
+    HashHistory.push("toy/" + this.props.toy.id);
   },
 
   render: function () {
@@ -16,5 +17,4 @@ var ToyIndexItem = React.createClass({
       <p>Price:{this.props.toy.price}</p>
     </li>;
   }
-
 });

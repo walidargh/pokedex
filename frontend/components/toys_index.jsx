@@ -3,38 +3,35 @@ var React = require('react'),
     ClientActions = require('../actions/client_actions.js'),
     PokemonIndexItem = require('./pokemon_index_item');
 
-var PokemonsIndex = React.createClass({
+var ToysIndex = React.createClass({
   getInitialState: function() {
-    return { pokemons: [] };
+    return {toys: []};
   },
 
   _onChange: function() {
-    this.setState({pokemons: PokemonStore.all()});
+    this.setState({toys: Toy});
   },
-
-  // componentWillMount: function() {
-  //   ClientActions.fetchAllPokemons();
-  // },
 
   componentDidMount: function() {
     this.listener = PokemonStore.addListener(this._onChange);
-    ClientActions.fetchAllPokemons();
+    ClientActions.fetchAllToys(this.props.pokeId);
   },
 
   componentWillUnmount: function() {
     this.listener.remove();
   },
 
+
   render: function() {
-    var pokemons = this.state.pokemons.map(function (pokemon) {
-      return <PokemonIndexItem key={pokemon.id} pokemon={pokemon} />;
+    var toys = this.state.toys.map(function (toy) {
+      return <ToyIndexItem key={toy.id} toy={toy} />;
     });
     return (
       <ul>
-        {pokemons}
+        {toys}
       </ul>
     );
   }
 });
 
-module.exports = PokemonsIndex;
+module.exports = ToysIndex;

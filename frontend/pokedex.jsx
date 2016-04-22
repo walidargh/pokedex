@@ -5,6 +5,7 @@ var React = require('react'),
     PokemonStore = require('./stores/pokemon_store'),
     PokemonsIndex = require('./components/pokemons_index'),
     PokemonDetail = require('./components/pokemon_detail'),
+    ToyDetail = require('./components/toy_detail'),
     ClientActions = require('./actions/client_actions'),
     Router = require('react-router').Router,
     Route = require('react-router').Route,
@@ -14,7 +15,10 @@ document.addEventListener('DOMContentLoaded', function(){
     var router =
       <Router history={HashHistory}>
         <Route path="/" component={App}>
-            <Route path="pokemon/:pokemonId" component={PokemonDetail}/>
+            <Route path="pokemon/:pokemonId" component={PokemonDetail}>
+              <Route path="pokemon/:pokemonId/toy/:toyId" component={ToyDetail}>
+              </Route>
+            </Route>
         </Route>
     </Router>;
     var root = document.getElementById('root');
