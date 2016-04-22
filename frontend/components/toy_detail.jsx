@@ -1,7 +1,23 @@
 var React = require('react');
 var PokemonStore = require('../stores/pokemon_store');
+var ClientActions = require('../actions/client_actions');
+
 
 var ToyDetail = React.createClass({
+  getInitialState: function () {
+    return {toy: this.getStateFromStore()};
+  },
+  getStateFromStore: function () {
+    var pokeId = parseInt(this.props.params.pokemonId);
+    return PokemonStore.find(pokeId).toys[this.params.toyId];
+  },
+
+  componentWillReceiveProps: function (newProps) {
+    var pokeId = newProps.params.pokemondId;
+    ClientActions.fetchSinglePokemon(pokeId);
+  },
+
+
   render: function() {
     return (
       <div>

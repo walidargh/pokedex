@@ -5,11 +5,11 @@ var React = require('react'),
 
 var ToysIndex = React.createClass({
   getInitialState: function() {
-    return {toys: []};
+    return {toys: this.props.pokemon.toys};
   },
 
-  _onChange: function() {
-    this.setState({toys: Toy});
+  _onChange: function(toys) {
+    this.setState({toys: toys});
   },
 
   componentDidMount: function() {

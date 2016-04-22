@@ -45,13 +45,13 @@ var PokemonDetail = React.createClass({
     } else {
       details = <div></div>;
     }
-    debugger;
+
     return(
       <div>
         <div className="pokeon-detail-pane">
           <div className="detail">
             {details}
-            // <ToysIndex pokeId={this.state.pokemon.id}/>
+            <ToysIndex pokemon={this.state.pokemon}/>
           </div>
         </div>
         {this.props.children}
